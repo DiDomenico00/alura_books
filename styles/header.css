@@ -1,0 +1,187 @@
+.cabecalho__menu-hamburguer{
+    width: 34px;
+    height: 24px;
+    background-image: url(../img/Menu.svg);
+    background-repeat: no-repeat;
+    background-position: center;
+    display: inline-block;
+}
+
+/* o combinador "~" irá procurar um elemento com a classe "container__rotulo" que esteja após o elemento com classe "container__botao" (no caso encontrou o label). O combinador ">" irá procurar um elemento com a classe "cabecalho__menu-hamburguer" que está dentro do elemento de classe "container__rotulo" */
+.container__botao:checked ~ .container__rotulo > .cabecalho__menu-hamburguer {
+    background-image: url("../img/Menu\ Aberto.svg")
+}
+
+.container__botao:checked ~ .container__rotulo{
+    background: var(--azul-degrade);
+}
+
+.cabecalho{
+    background-color: var(--branco);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    position: relative;
+}
+
+.container__esquerda{
+    display: flex;
+    align-items: center;
+    padding: 1em;
+    gap: 1em;
+}
+
+.container__direita{
+    display: flex;
+    align-items: center;
+    padding-right: 1em;
+    gap: 0.5em;
+}
+
+.lista-menu{
+    display: none;
+    position: absolute;
+    top: 100%;
+    width: 55vw;
+}
+
+.container__botao:checked ~ .lista-menu{
+    display: block;
+}
+
+.lista-menu__titulo, .lista-menu__item{
+    padding: 1em;
+    background-color: var(--branco);
+}
+
+.lista-menu__titulo{
+    color: var(--laranja);
+    font-weight: 700;
+}
+
+.lista-menu__link{
+    background: var(--azul-degrade);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    text-transform: uppercase;
+}
+
+.container__botao{
+    /* Para remover o input checkbox que estava ao lado do menu sanduíche */
+    display: none;
+}
+
+.container__titulo{
+    display: none;
+}
+
+.opcoes{
+    display: none;
+}
+
+.container__direita__texto{
+    /* Para não aparecer na tela abaixo de 1024px */
+    display: none;
+}
+
+
+
+/* MEDIA QUERY (SCREEN É UM MEDIA TYPE) (Por convenção: MIN WIDTH normalmente usa-se quando está desenvolvendo "mobile-first". Para "desktop-first", usar max-width) */
+@media screen and (min-width: 1024px){
+    .container__titulo, .container__titulo--negrito{
+        font-family: var(--fonte-secundaria);
+        font-size: 30px;
+    }
+
+    .container__titulo--negrito{
+        font-weight: 700;
+    }
+
+    .container__titulo{
+        font-weight: 400;
+        display: block;
+    }
+
+    .opcoes{
+        display: flex;
+    }
+
+    .opcoes__item{
+        padding: 1em;
+        text-transform: uppercase;
+        font-family: var(--fonte-secundaria);
+        font-weight: 400;
+    }
+
+    .opcoes__link{
+        text-decoration: none;
+        color: var(--preto);
+    }
+
+    .container__direita-transparente{
+        display: none;
+    }
+
+    .cabecalho__menu-hamburguer{
+        display: none;
+    }
+
+    .opcoes__botao:checked ~ .lista-menu{
+        display: block;
+        width: auto;
+    }
+
+    .opcoes__botao{
+        display: none;
+    }
+
+    .opcoes__botao:checked ~ .opcoes__rotulo > .opcoes__item{
+        background: var(--azul-degrade);
+        color: var(--branco);
+    }
+
+    .opcoes__item{
+        padding: 2em 1em;
+    }
+
+    .lista-menu__item:hover{
+        background: var(--azul-degrade);
+    }
+
+    .lista-menu__item:hover > .lista-menu__link{
+        -webkit-text-fill-color: var(--branco);
+        text-decoration: none;
+    }
+
+    .container__direita__texto{
+        /* Para não aparecer na tela abaixo de 1728px */
+        display: none;
+    }
+}
+
+
+@media screen and (min-width: 1728px){
+    .container__direita__link{
+        display: flex;
+        align-items: center;
+        text-decoration: none;
+        color: var(--preto);
+    }
+
+    .cabecalho{
+        padding: 0 2em;
+    }
+
+    .opcoes{
+        /* POSICIONANDO "Categorias, Favoritos e Minha estante" para a esquerda, junto ao AluraBooks */
+        margin-right: auto;
+        margin-left: 3em;
+    }
+
+    .container__direita__texto{
+        /* Para aparecer na tela acima de 1728px */
+        display: block;
+    }
+
+}
